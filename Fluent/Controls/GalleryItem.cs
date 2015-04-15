@@ -441,6 +441,15 @@ namespace Fluent
             CommandHelper.Execute(this.CancelPreviewCommand, this, null);
         }
 
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            // Make gallery items selectable using the keyboard.
+            if (e.Key == Key.Return)
+                RaiseClick();
+
+            base.OnPreviewKeyDown(e);
+        }
+
         #endregion
 
         #region Protected methods
