@@ -139,7 +139,8 @@
                               Grid.RowSpan="1"
                               Grid.Row="1"
                               Margin="1"
-                              Focusable="False">
+                              Focusable="False"
+                              UseLayoutRounding="False">
                     <Fluent:GalleryPanel Background="White"
                                          MinItemsInRow="{TemplateBinding MinItemsInRow}"
                                          MaxItemsInRow="{TemplateBinding MaxItemsInRow}"

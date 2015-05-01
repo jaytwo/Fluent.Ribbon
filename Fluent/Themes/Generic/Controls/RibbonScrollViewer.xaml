@@ -406,7 +406,8 @@
     <ControlTemplate x:Key="ScrollViewerControlTemplate"
                      TargetType="{x:Type ScrollViewer}">
         <Border BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}">
+                BorderThickness="{TemplateBinding BorderThickness}"
+                UseLayoutRounding="True">
             <Grid x:Name="Grid"
                   Background="{TemplateBinding Background}">
                 <Grid.ColumnDefinitions>
