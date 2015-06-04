@@ -469,7 +469,7 @@ namespace Fluent
             var window = Window.GetWindow(this);
             if (window != null)
             {
-                window.PreviewKeyDown -= this.HandleWindowKeyDown;
+                window.KeyDown -= this.HandleWindowKeyDown;
                 window.SizeChanged -= this.OnWindowSizeChanged;
 
                 if (double.IsNaN(this.savedWindowMinWidth) == false
