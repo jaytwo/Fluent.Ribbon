@@ -195,6 +195,15 @@ namespace Fluent
         public static readonly DependencyProperty IsAutomaticCollapseEnabledProperty =
             DependencyProperty.Register("IsAutomaticCollapseEnabled", typeof(bool), typeof(RibbonWindow), new PropertyMetadata(true));
 
+        public bool IgnoreTaskbarOnMaximize
+        {
+            get { return (bool)GetValue(IgnoreTaskbarOnMaximizeProperty); }
+            set { SetValue(IgnoreTaskbarOnMaximizeProperty, value); }
+        }
+
+        public static readonly DependencyProperty IgnoreTaskbarOnMaximizeProperty =
+            DependencyProperty.Register("IgnoreTaskbarOnMaximize", typeof(bool), typeof(RibbonWindow));
+
         private readonly WindowSizing windowSizing;
 
         #endregion

@@ -99,10 +99,7 @@
 
         private bool IgnoreTaskBar()
         {
-            //var ignoreTaskBar = this.AssociatedObject.IgnoreTaskbarOnMaximize 
-            //    || this.AssociatedObject.WindowStyle == WindowStyle.None;
-
-            return false;
+            return this.window.IgnoreTaskbarOnMaximize || this.window.WindowStyle == WindowStyle.None;
         }
 
         private void WmGetMinMaxInfo(IntPtr hwnd, IntPtr lParam)
