@@ -18,11 +18,7 @@ namespace Fluent
     using Fluent.Extensions;
     using Fluent.Internal;
     using Fluent.Metro.Native;
-#if NET40
     using Microsoft.Windows.Shell;
-#else
-    using System.Windows.Shell;
-#endif
     using Microsoft.Win32;
     using System.Globalization;
 
@@ -202,7 +198,9 @@ namespace Fluent
         }
 
         public static readonly DependencyProperty IgnoreTaskbarOnMaximizeProperty =
-            DependencyProperty.Register("IgnoreTaskbarOnMaximize", typeof(bool), typeof(RibbonWindow));
+            DependencyProperty.Register("IgnoreTaskbarOnMaximize", typeof(bool), typeof(RibbonWindow), new PropertyMetadata(OnWindowChromeRelevantPropertyChanged));
+
+        public event EventHandler IgnoreTaskbarOnMaximizeChanged;
 
         private readonly WindowSizing windowSizing;
 
@@ -347,6 +345,7 @@ namespace Fluent
             windowChrome.CornerRadius = this.CornerRadius;
             windowChrome.GlassFrameThickness = this.GlassBorderThickness;
             windowChrome.ResizeBorderThickness = this.ResizeBorderThickness;
+            windowChrome.IgnoreTaskbarOnMaximize = this.IgnoreTaskbarOnMaximize;
 #if NET45
             windowChrome.UseAeroCaptionButtons = this.CanUseDwm;
 #endif

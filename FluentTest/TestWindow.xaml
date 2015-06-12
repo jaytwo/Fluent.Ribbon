@@ -13,6 +13,6 @@
                      MinWidth="80"
                      MinHeight="60"
                      mc:Ignorable="d"
-                     WindowState="Normal">   
+                     WindowState="Normal" IgnoreTaskbarOnMaximize="True">   
     <FluentTest:TestContent x:Name="TestContent" />
 </Fluent:RibbonWindow>

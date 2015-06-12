@@ -14,7 +14,6 @@
     {
         private readonly RibbonWindow window;
         private IntPtr windowHwnd;
-        private bool fixingNastyWindowChromeBug;
 
         /// <summary>
         /// Creates a new instance and binds it to <paramref name="window"/>
@@ -22,8 +21,6 @@
         public WindowSizing(RibbonWindow window)
         {
             this.window = window;
-
-            this.window.StateChanged += this.HandleWindowStateChanged;
         }
 
         /// <summary>
@@ -36,39 +33,7 @@
             {
                 this.windowHwnd = hwndSource.Handle;
                 hwndSource.AddHook(this.HwndHook);
-
-                this.window.Dispatcher.BeginInvoke((Action)(this.FixNastyWindowChromeBug));
             }
-        }
-
-        private void HandleWindowStateChanged(object sender, EventArgs e)
-        {
-            this.window.Dispatcher.BeginInvoke((Action)(this.FixNastyWindowChromeBug));
-        }
-
-        private void FixNastyWindowChromeBug()
-        {
-            if (this.fixingNastyWindowChromeBug
-                || this.window.WindowState != WindowState.Maximized)
-            {
-                return;
-            }
-
-            this.fixingNastyWindowChromeBug = true;
-
-            var mmi = this.GetMinMaxInfo(this.windowHwnd, new MINMAXINFO());
-            if (NativeMethods.IsDwmEnabled())
-            {
-                UnsafeNativeMethods.MoveWindow(this.windowHwnd, mmi.ptMaxPosition.X + 10, mmi.ptMaxPosition.Y, mmi.ptMaxSize.X, mmi.ptMaxSize.Y, true);
-                UnsafeNativeMethods.MoveWindow(this.windowHwnd, mmi.ptMaxPosition.X, mmi.ptMaxPosition.Y, mmi.ptMaxSize.X, mmi.ptMaxSize.Y, true);
-            }
-            else
-            {
-                UnsafeNativeMethods.MoveWindow(this.windowHwnd, mmi.ptMaxPosition.X, mmi.ptMaxPosition.Y + 1, mmi.ptMaxSize.X, mmi.ptMaxSize.Y, true);
-                UnsafeNativeMethods.MoveWindow(this.windowHwnd, mmi.ptMaxPosition.X, mmi.ptMaxPosition.Y, mmi.ptMaxSize.X, mmi.ptMaxSize.Y, true);
-            }
-
-            this.fixingNastyWindowChromeBug = false;
         }
 
         private IntPtr HwndHook(IntPtr hWnd, int message, IntPtr wParam, IntPtr lParam, ref bool handled)
