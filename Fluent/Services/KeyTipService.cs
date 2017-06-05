@@ -304,12 +304,6 @@ namespace Fluent
             this.ribbon.Focusable = false;
         }
 
-        private void OnAdornerChainTerminated(object sender, EventArgs e)
-        {
-            this.RestoreFocuses();
-            ((KeyTipAdorner)sender).Terminated -= this.OnAdornerChainTerminated;
-        }
-
         private void OnDelayedShow(object sender, EventArgs e)
         {
             if (this.activeAdornerChain == null)
@@ -358,7 +352,6 @@ namespace Fluent
             this.ClearUserInput();
 
             this.activeAdornerChain = new KeyTipAdorner(this.ribbon, this.ribbon, null);
-            this.activeAdornerChain.Terminated += this.OnAdornerChainTerminated;
 
             // Special behavior for backstage
             var specialControl = this.GetBackstage()

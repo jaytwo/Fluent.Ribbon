@@ -29,16 +29,6 @@ namespace Fluent
     /// </summary>
     internal class KeyTipAdorner : Adorner
     {
-        #region Events
-
-        /// <summary>
-        /// This event is occured when adorner is 
-        /// detached and is not able to be attached again
-        /// </summary>
-        public event EventHandler Terminated;
-
-        #endregion
-
         #region Fields
 
         // KeyTips that have been
@@ -406,11 +396,6 @@ namespace Fluent
             if (this.childAdorner != null)
             {
                 this.childAdorner.Terminate();
-            }
-
-            if (this.Terminated != null)
-            {
-                this.Terminated(this, EventArgs.Empty);
             }
 
             this.Log("Termination");
