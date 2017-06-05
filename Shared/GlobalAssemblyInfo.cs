@@ -23,8 +23,8 @@ using System.Windows;
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-[assembly: AssemblyVersion("3.4.0.1")]
-[assembly: AssemblyFileVersion("3.4.0.1")]
+[assembly: AssemblyVersion("3.4.0.2")]
+[assembly: AssemblyFileVersion("3.4.0.2")]
 [assembly: AssemblyInformationalVersion("SRC")]
 
 [assembly: ComVisible(false)]
